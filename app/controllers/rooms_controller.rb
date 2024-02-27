@@ -4,8 +4,11 @@ class RoomsController < ApplicationController
   def index
     @room = Room.new
     @rooms = Room.public_room
-    @single_room = Room.find(params[:id])
     @users = User.all_except(current_user)
+  end
+
+  def show
+    @single_room = Room.find(params[:id])
   end
 
   def create
@@ -31,6 +34,6 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:name) # Adjust as per your Room model attributes
+    params.require(:room).permit(:name)
   end
 end

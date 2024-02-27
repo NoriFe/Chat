@@ -62,6 +62,13 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  config.assets.compile = true
+
+  # Set Sass configuration
+  config.sass.preferred_syntax = :sass
+  config.sass.line_comments = false
+  config.sass.cache = false
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
