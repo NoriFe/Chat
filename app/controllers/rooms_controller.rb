@@ -5,10 +5,17 @@ class RoomsController < ApplicationController
     @room = Room.new
     @rooms = Room.public_room
     @users = User.all_except(current_user)
+    render 'index'
   end
 
   def show
     @single_room = Room.find(params[:id])
+    @room = Room.new
+    @rooms = Room.public_room
+    @message = Message.new
+    @messages = @single_room.messages.order(created_at: :asc)
+    @users = User.all_except(current_user)
+    render 'index'
   end
 
   def create

@@ -6,6 +6,7 @@
     <%= render @users %>
   </div>
   <h4>Rooms</h4>
+    <%= turbo_stream_from 'rooms' %>
   <div id="rooms">
     <%= render @rooms %>
   </div>
