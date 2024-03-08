@@ -21,11 +21,11 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
 
-    respond_to do |format|
+    respond_to do |f|
       if @room.save
-        format.turbo_stream { render turbo_stream: turbo_stream.append(:rooms, partial: 'rooms/room', locals: { room: @room }) }
+        f.turbo_stream { render turbo_stream: turbo_stream.append(:rooms, partial: 'rooms/room', locals: { room: @room }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('flash-messages', partial: 'layouts/flash_messages', locals: { flash: flash }) }
+       f.turbo_stream { render turbo_stream: turbo_stream.replace('flash-messages', partial: 'layouts/flash_messages', locals: { flash: flash }) }
       end
     end
   end
@@ -33,8 +33,8 @@ class RoomsController < ApplicationController
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@room) }
+    respond_to do |f|
+      f.turbo_stream { render turbo_stream: turbo_stream.remove(@room) }
     end
   end
 
