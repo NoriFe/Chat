@@ -1,5 +1,51 @@
+body {
+  overflow: hidden;  
+}
 
-.bg {
+.msg-form {
+  width: 100%;
+  height: 56px;
+  padding: 10px;
+}
 
-  background-color: rgb(66, 238, 152);
+#single-room {
+  height: calc(100vh - 150px);
+  overflow-x: hidden;
+  overflow-y: scroll; 
+}
+
+#message {
+  height: calc(100vh - 150px);
+  overflow-x: hidden;
+  overflow-y: scroll; 
+}
+#room_container {
+  height: 100vh;
+  margin-right: 0px !important; 
+}#side_panel {
+  height: 100vh;
+  margin-right: 0px !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-bottom: 55px;
+}
+#chatroom_container {
+  height: 100vh;
+  margin-right: 0px !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.msg-content {
+  width: 80%;
+  margin-right: 5px;
+}
+.message-box {
+  word-wrap:break-word;
+  width: fit-content;
+  max-width: 40%;
+  padding: 5px; 
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #9b9b9b;
+  padding:10px;
 }
