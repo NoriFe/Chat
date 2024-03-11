@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :rooms
-  devise_for :admin, controllers: {
+  resources :rooms do
+    resources :messages
+  end
+    devise_for :admin, controllers: {
     sessions: 'admin/sessions',
     registration: 'admin/registration'
   }
