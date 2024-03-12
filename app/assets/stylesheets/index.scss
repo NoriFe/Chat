@@ -31,7 +31,6 @@
 #single_room {
   margin-top: 20px;
 }
-
 #messages {
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -39,8 +38,6 @@
   margin-bottom: 20px;
   height: 400px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column-reverse;
 }
 
 #message_input {

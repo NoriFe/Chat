@@ -1,10 +1,15 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["messages"]
 
   connect() {
-    this.scrollToBottom()
+    this.observer = new MutationObserver(() => this.scrollToBottom())
+    this.observer.observe(this.messagesTarget, { childList: true })
+  }
+
+  disconnect() {
+    this.observer.disconnect()
   }
 
   scrollToBottom() {
@@ -12,6 +17,6 @@ export default class extends Controller {
   }
 
   update() {
-    this.scrollToBottom()
+    setTimeout(() => this.scrollToBottom(), 100)
   }
 }
