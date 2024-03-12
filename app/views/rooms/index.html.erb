@@ -1,6 +1,6 @@
-
-<div id="chatroom_container" class="row bg-dark text-light">
-  <div id="side_panel" class="col-md-4 col-sm-4">
+<div id="container" class="container-fluid bg-dark text-light d-flex whole-box">
+  <!-- Left side panel for users and rooms -->
+  <div id="side_panel" class="col-md-4 col-sm-4 left">
     <h5><%= current_user.email %></h5>
     <h4>Users</h4>
     <%= turbo_stream_from 'users' %>
@@ -14,15 +14,19 @@
       <%= render @rooms %>
     </div>
   </div>
-  <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
+  
+  <!-- Right side panel for chat -->
+  <div id="chat_container" class="d-flex flex-column right" data-controller="scroll" data-action="turbo:append->scroll#update">
     <% if @single_room %>
-      <div id="single_room">
+      <div id="single_room" class="flex-grow-1">
         <h4 class="text-center"><%= @user&.email || @single_room.name %></h4>
         <%= turbo_stream_from @single_room %>
-        <div id="messages" class="messages-container">
+        <div id="messages" class="overflow-auto">
           <%= render @messages %>
         </div>
-        <%= render 'layouts/new_message_form' %>
+        <div id="message_input" class="d-flex align-items-center bg-light p-2">
+          <%= render 'layouts/new_message_form' %>
+        </div>
       </div>
     <% end %>
   </div>

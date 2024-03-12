@@ -9,11 +9,11 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @single_room = Room.find(params[:id])
+    @single_room = Room.find_by(id: params[:id]) # Use find_by to handle missing records gracefully
     @room = Room.new
     @rooms = Room.public_room
     @message = Message.new
-    @messages = @single_room.messages.order(created_at: :asc)
+    @messages = @single_room&.messages&.order(created_at: :asc) # Use safe navigation to avoid errors
     @users = User.all_except(current_user)
     render 'index'
   end
