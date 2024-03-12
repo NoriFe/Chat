@@ -18,23 +18,25 @@ class RoomsController < ApplicationController
     render 'index'
   end
 
-  def create
-    @room = Room.new(room_params)
-
-    respond_to do |f|
-      if @room.save
-        f.turbo_stream { render turbo_stream: turbo_stream.append(:rooms, partial: 'rooms/room', locals: { room: @room }) }
-      else
-       f.turbo_stream { render turbo_stream: turbo_stream.replace('flash-messages', partial: 'layouts/flash_messages', locals: { flash: flash }) }
-      end
+  def destroy
+    @room = Room.find(params[:id])
+    @room.messages.destroy_all # Delete associated messages
+    @room.destroy
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@room) }
+      format.html { redirect_to root_path, notice: 'Room was successfully deleted.' }
     end
   end
 
-  def destroy
-    @room = Room.find(params[:id])
-    @room.destroy
-    respond_to do |f|
-      f.turbo_stream { render turbo_stream: turbo_stream.remove(@room) }
+  def create
+    @room = Room.new(room_params)
+
+    respond_to do |format|
+      if @room.save
+        format.turbo_stream { render turbo_stream: turbo_stream.append(:rooms, partial: 'rooms/room', locals: { room: @room }) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('flash-messages', partial: 'layouts/flash_messages', locals: { flash: flash }) }
+      end
     end
   end
 

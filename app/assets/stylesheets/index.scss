@@ -19,22 +19,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll; 
 }
-#room_container {
-  height: 100vh;
-  margin-right: 0px !important; 
-}#side_panel {
-  height: 100vh;
-  margin-right: 0px !important;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  margin-bottom: 55px;
-}
-#chatroom_container {
-  height: 100vh;
-  margin-right: 0px !important;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
+
 .msg-content {
   width: 80%;
   margin-right: 5px;
@@ -48,4 +33,12 @@ body {
   margin-bottom: 10px;
   background-color: #9b9b9b;
   padding:10px;
+}
+.messages-container {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+#room_container, #side_panel, #chatroom_container {
+  height: calc(100vh - 56px);
+  margin-right: 0px !important; 
 }
