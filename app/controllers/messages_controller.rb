@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
-  def create_table
-    @message = current_user.messages.create(body: msg_parms[:body], room_id: params[:room_id])
+  def create
+    @messages = current_user.messages.create(body: msg_params[:body], room_id: params[:room_id])
   end
 
   private
